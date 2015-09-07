@@ -1,0 +1,55 @@
+{
+  "name": "kerplunk-location-history",
+  "displayName": "Location History",
+  "description": "",
+  "version": "0.0.1",
+  "kerplunk": {
+    "permissions": {
+      "kerplunk-activityitem": {
+        "models": [
+          "ActivityItem"
+        ]
+      },
+      "kerplunk-place": {
+        "models": [
+          "Place"
+        ],
+        "methods": [
+          "saveLevelCityToMongo"
+        ]
+      }
+    },
+    "dependencies": [
+      "kerplunk-place",
+      "kerplunk-city-autocomplete"
+    ]
+  },
+  "keywords": [
+    "kerplunk-plugin",
+    "kp:Location"
+  ],
+  "engines": {
+    "node": ">=0.10"
+  },
+  "main": "./lib/index.js",
+  "dependencies": {
+    "cities1000": "~0.0.0",
+    "csv-stream": "~0.1.3",
+    "event-stream": "^3.3.1",
+    "iso-countries": "~0.0.5",
+    "lodash": "^3.10.0",
+    "moment": "~2.5.1",
+    "react": "^0.13.3",
+    "when": "^3.7.3"
+  },
+  "devDependencies": {
+    "coffee-script": "^1.9.1",
+    "glut": "0.0.1",
+    "glut-coffee-amdify": "0.0.0",
+    "gulp": "^3.8.8",
+    "gulp-coffee": "^2.3.1"
+  },
+  "scripts": {
+    "prepublish": "rm -rf ./lib ./public && gulp"
+  }
+}
