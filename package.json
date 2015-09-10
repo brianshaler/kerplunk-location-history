@@ -56,5 +56,6 @@
   "repository": {
     "type": "git",
     "url": "git://github.com/brianshaler/kerplunk-location-history.git"
-  }
+  },
+  "license": "MIT"
 }
