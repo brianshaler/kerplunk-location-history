@@ -1,6 +1,6 @@
 # kerplunk-location-history
 
-[Kerplunk](https://github.com/brianshaler/kerplunk) plugin. 
+[Kerplunk](https://github.com/brianshaler/kerplunk) plugin. Location functionality based on your geotagged ActivityItems
 
 [![Build Status](https://travis-ci.org/brianshaler/kerplunk-location-history.svg)](https://travis-ci.org/brianshaler/kerplunk-location-history)
 [![npm version](https://img.shields.io/npm/v/kerplunk-location-history.svg)](https://www.npmjs.com/package/kerplunk-location-history)
