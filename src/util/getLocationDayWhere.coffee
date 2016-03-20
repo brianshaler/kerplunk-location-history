@@ -1,3 +1,4 @@
+_ = require 'lodash'
 Promise = require 'when'
 
 module.exports = (System) ->
@@ -6,6 +7,11 @@ module.exports = (System) ->
   (where) ->
     mpromise = LocationDay
     .where where
+    .sort
+      date: -1
     .populate 'city'
-    .findOne()
+    .limit 1
     Promise mpromise
+    .then (items) ->
+      console.log 'items', where, items
+      items?[0]

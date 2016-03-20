@@ -29,17 +29,17 @@ module.exports = (System) ->
       .then (city) -> city: city
     .then (loc) ->
       return loc if loc?.city
+      # No? Okay, find a posts from up to a week before
+      getLocationDuringRange lastWeek, today
+      .then (item) -> getCity item.location if item?.location
+      .then (city) -> city: city
+    .then (loc) ->
+      return loc if loc?.city
       # No? Okay, find a LocationDay from up to a week before
       getLocationDayWhere
         date:
           $lt: today
           $gt: lastWeek
-    .then (loc) ->
-      return loc if loc?.city
-      # No? Okay, find a posts from up to a week before
-      getLocationDuringRange lastWeek, today
-      .then (item) -> getCity item.location if item?.location
-      .then (city) -> city: city
     .then (loc) ->
       return loc if loc?.city
       # No? Okay, find a LocationDay from up to a month before
