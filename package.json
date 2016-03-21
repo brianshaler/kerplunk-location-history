@@ -2,7 +2,7 @@
   "name": "kerplunk-location-history",
   "displayName": "Location History",
   "description": "Location functionality based on your geotagged ActivityItems",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "kerplunk": {
     "permissions": {
       "kerplunk-activityitem": {
