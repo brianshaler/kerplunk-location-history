@@ -21,6 +21,8 @@ module.exports = (System) ->
 
   saveLevelCityToMongo = System.getMethod 'kerplunk-place', 'saveLevelCityToMongo'
 
+  getBlogSettings = System.getMethod 'kerplunk-blog', 'getBlogSettings'
+
   getLastLocation = GetLastLocation System
   getCityOnDay = GetCityOnDay System
   getCurrentCity = GetCurrentCity System
@@ -199,8 +201,8 @@ module.exports = (System) ->
     .where where
     .find (err, cities) ->
       console.error err if err
-      cityIds = _.pluck cities, '_id'
-      cityNames = _.pluck cities, 'name'
+      cityIds = _.map cities, '_id'
+      cityNames = _.map cities, 'name'
       # console.log cityNames
       console.log 'cities to clear', cityNames, JSON.stringify where
       LocationDay
@@ -222,6 +224,7 @@ module.exports = (System) ->
       '/admin/location/posts/:year/:month/:day': 'getPostsOnDay'
     public:
       '/location/get': 'get'
+      '/posts/day/:year/:month/:day': 'getPostsOnDay'
 
   handlers:
     get: get
@@ -316,6 +319,7 @@ module.exports = (System) ->
 
     getPostsOnDay: (req, res, next) ->
       {year, month, day} = req.params
+      console.log "getPostsOnDay", year, month, day
       year = parseInt year
       month = -1 + parseInt month
       day = parseInt day
@@ -329,8 +333,22 @@ module.exports = (System) ->
         items = _.filter items, (item) ->
           t = item.postedAt.getTime()
           minTime <= t < maxTime
-        res.send
-          posts: items ? []
+        if req.params.format == 'json'
+          res.send
+            posts: items ? []
+        else
+          themes = System.getGlobal 'public.blog.themes'
+          blogSettings = getBlogSettings?()
+          themeName = blogSettings?.theme
+          unless themes[themeName]?.components?.layout
+            console.log themeName, 'not found. using', blogSettings?.theme, 'instead'
+            themeName = blogSettings?.theme
+          theme = themes[themeName]
+          res.render 'kerplunk-stream:list',
+            layout: theme?.components?.layout
+            blogSettings: blogSettings
+            data: items
+
 
   events:
     ask:

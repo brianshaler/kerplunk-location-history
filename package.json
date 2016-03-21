@@ -17,6 +17,11 @@
         "methods": [
           "saveLevelCityToMongo"
         ]
+      },
+      "kerplunk-blog": {
+        "methods": [
+          "getBlogSettings"
+        ]
       }
     },
     "dependencies": [
@@ -37,7 +42,7 @@
     "csv-stream": "~0.1.3",
     "event-stream": "^3.3.1",
     "iso-countries": "~0.0.5",
-    "lodash": "^3.10.0",
+    "lodash": "^4.6.1",
     "moment": "~2.5.1",
     "react": "^0.13.3",
     "when": "^3.7.3"
