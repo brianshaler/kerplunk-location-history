@@ -225,6 +225,7 @@ module.exports = (System) ->
     public:
       '/location/get': 'get'
       '/posts/day/:year/:month/:day': 'getPostsOnDay'
+      '/location/byday/:year/:month/:day': 'getCityOnDay'
 
   handlers:
     get: get
